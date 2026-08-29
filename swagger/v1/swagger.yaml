@@ -1,0 +1,46 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/courses":
+    get:
+      summary: List of courses
+      tags:
+      - Courses
+      parameters:
+      - name: level
+        in: query
+        description: Filter by level
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  courses:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        title:
+                          type: string
+                        level:
+                          type: string
+                      required:
+                      - id
+                      - title
+                      - level
+                required:
+                - courses
+servers:
+- url: http://localhost:3000
+  description: Local development server
